@@ -106,6 +106,15 @@
         
         
       });
+      $(".pref").on("click", function(){
+          console.log("YOU A BUTT");
+          var url = window.location.pathname;
+            var id = url.substring(url.lastIndexOf('/') + 1);
+         
+                window.location.href="/sportscenterpref/"+id;
+        
+        
+      });
       
   </script>
 </body>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>EGCB Sportscenter</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+    <div id="main">
+      <div id="header">
+        <div id="logo">
+          <div id="logo_text">
+           
+            <h1><a href="index.html">EGCB<span class="logo_colour">Sports Center</span></a></h1>
+            <h2>If you want sports, we got the details</h2>
+          </div>
+        </div>
+        <div id="menubar">
+          <ul id="menu">
+            <li class="selected" id="home"><a>Home</a></li>
+            <li id="gamestats"><a>Live Feeds</a></li>
+            <li class='player'><a href="">Player Stats</a></li>
+            <li class='pref'><a href="">Preferences</a></li>
+          </ul>
+        </div>
+      </div>
+<div id="colormain1">
+    <div class="color12">
+        <div class="color22">
+            <h4>Change Your Favorite Team</h4>
+            <select class="form-group" name="Teams" id="teamname">
+              <option value="AtlantaHawks">Alanta Hawks</option> 
+              <option value="BostonCeltics">Boston Celtics </option>
+              <option value="BrooklynNets">Brooklyn Nets </option>
+              <option value="CharlotteHornets">Charlotte Hornets </option> 
+              <option value="ChicagoBulls">Chicago Bulls </option> 
+              <option value="ClevelandCavaliers">Cleveland Cavaliers </option> 
+              <option value="DallasMavericks">Dallas Mavericks </option> 
+              <option value="DenverNuggets">Denver Nuggets </option> 
+              <option value="DetroitPistons">Detroit Pistons </option> 
+              <option value="GoldenStateWarriors">Golden State Warriors </option> 
+              <option value="HoustonRockets">Houston Rockets </option> 
+              <option value="IndianaPacers">Indiana Pacers </option> 
+              <option value="LAClippers">LA Clippers </option> 
+              <option value="LALakers">LA Lakers </option> 
+              <option value="MemphisGrizzlies">Memphis Grizzlies </option> 
+              <option value="MiamiHeat">Miami Heat </option> 
+              <option value="MilwaukeeBucks">Milwaukee Bucks </option> 
+              <option value="MinnesotaTimberwolves">Minnesota Timberwolves </option> 
+              <option value="NewOrleansPelicans">New Orleans Pelicans </option> 
+              <option value="NewYorkKnicks">New York Knicks </option> 
+              <option value="OklahomaCityThunder">Oklahoma City Thunder </option> 
+              <option value="OrlandoMagic">Orlando Magic </option> 
+              <option value="PhiladelphiaSixers">Philadelphia Sixers </option> 
+              <option value="PhoenixSuns">Phoenix Suns </option> 
+              <option value="PortlandTrailBlazers">Portland Trail Blazer </option>
+              <option value="SacramentoKings">Sacramento Kings </option> 
+              <option value="SanAntonioSpurs">San Antonio Spurs </option> 
+              <option value="TorontoRaptors">Toronto Raptors </option> 
+              <option value="UtahJazz">Utah Jazz </option> 
+              <option value="WashingtonWizards">Washington Wizards </option> 
+            </select>
+          </form>
+          
+          <br>
+          <h4>Select which Apps you'd perfer</h4>
+            <label class="switch">
+              <input type="checkbox" id="gamestats"> &ensp;Add Game Stats
+            </label>
+            <br>
+            <label class="player">
+              <input type="checkbox" id="player12"> &ensp; Change/add Favorite Player
+            </label>
+            <div id="playerinsert" style="display:none">
+              <label for="team">Favorite Player</label>
+              <input type="text" class="form-control" id="faveplayer">
+            </div>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-md" id="add-btn" formaction ="userquestions.html"><span class="fa fa-fire"></span>Submit</button>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p>Copyright &copy; EGCB Sports Cetner
+    </div>
+     <script>
+        $( document ).ready(function() {
+           console.log( "ready!" ); 
+           var url = window.location.pathname;
+           var id = url.substring(url.lastIndexOf('/') + 1);
+           console.log(id);
+           $.ajax("/api/home/"+id, {
+               type: "GET"
+             }).then(function(data) {
+           //   $("#imagediv").prepend('<img id="theImg" SameSite=None src="'+data.color.url+'" />');
+               $("#colormain1").css("background-color", data.color.colors1[1]);
+               $(".color12").css("background-color", data.color.colors1[2]);
+               $(".color22").css("background-color", data.color.colors1[3]);
+               $("#imageborder").css("border-color", data.color.colors1[1]);
+               
+               // $("#welcomeid").html("Welcome: "+ data.db.UserID)
+               // $("#favteam").html("Your favorite Team is: " + data.db.FavTeam);
+       
+               console.log(data.color.url);
+               console.log(data);})
+         
+       });
+
+    </script>
+

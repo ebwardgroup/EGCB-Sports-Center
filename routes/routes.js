@@ -45,7 +45,12 @@ module.exports = function(app) {
 
   })
 })
+
 app.get("/sportscentergame/:id?", function(req, res){
   res.sendFile(path.join(__dirname,"../public/gamescores.html"));
+})
+
+app.get("/sportscenterpref/:id?", function(req, res){
+  res.sendFile(path.join(__dirname,"../public/preferences.html"));
 })
 }
