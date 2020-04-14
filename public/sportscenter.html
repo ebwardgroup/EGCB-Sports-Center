@@ -1,0 +1,94 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGCB Sports Center</title>
+</head>
+<body>
+    <h1>Sportscenter</h1>
+    
+</body>
+</html> -->
+
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>EGCB Sportscenter</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+         
+          <h1><a href="index.html">EGCB<span class="logo_colour">Sports Center</span></a></h1>
+          <h2>If you want sports, we got the details</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li class="selected"><a href="sportscenter.html">Home</a></li>
+          <li><a href="">Live Feeds</a></li>
+          <li><a href="">Scores</a></li>
+          <li><a href="">Player stats</a></li>
+          <li><a href="">Search</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="colormain">
+      <div class="color1" id="leftbox">
+          <div class="color2">
+              <div id="imagediv">
+              </div>
+          </div>
+      </div>
+      <div id="rightbox">
+        <div class="color2">
+            <div class="color1" id="welcomeid">
+              Welcome  
+            </div>
+        </div>
+        <div class="color2">
+            <div class="color1" id="favteam">
+                Your favorite team:
+            </div>
+        </div>
+      </div>
+  </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p>Copyright &copy; EGCB Sports Cetner
+    </div>
+  </div>
+  <script>
+    $( document ).ready(function() {
+    console.log( "ready!" ); 
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    console.log(id);
+    $.ajax("/api/home/"+id, {
+        type: "GET"
+      }).then(function(data) {
+      $("#imagediv").prepend('<img id="theImg" SameSite=None src="'+data.color.url+'" />');
+        $("#colormain").css("background-color", data.color.colors1[1]);
+        $(".color1").css("background-color", data.color.colors1[2]);
+        $(".color2").css("background-color", data.color.colors1[3]);
+        $("#welcomeid").html("Welcome: "+ data.db.UserID)
+        $("#favteam").html("Your favorite Team is: " + data.db.FavTeam);
+
+        console.log(data.color.url);
+        console.log(data);})
+});
+  </script>
+</body>
+</html>

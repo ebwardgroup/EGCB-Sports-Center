@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sports Center - Create user</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>  
+  
+  <div class="container"></div>
+    <div class="jumbotron">
+      <h1>EGCB's NBA Sports Center</h1>
+      <h3>Fill out the form below the logos to create a user profile </h3>
+      <hr>
+      <!-- <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Characters</button></a>
+    </div> -->
+    <div class="row">
+      <a href="https://www.nba.com">
+      <img src = "../team logos.jpg" alt="nba team logos" style="width:90%;height:90%;">
+    </a>
+      
+      <div class="col-12">
+
+        <div class="card">
+          <div class="card-header">
+            <h3><strong>Create user</strong></h3>
+          </div>
+          
+          <div class="card-body">
+            <form method="POST" role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group">
+                <label for="age">Email address</label>
+                <input type="text" class="form-control" id="age">
+              </div>
+
+              <div class="form-group">
+                <label for="team">password</label>
+                <input type="text" class="form-control" id="faveTeam">
+              </div>
+              <h4>Select Your Favorite Team</h4>
+              <select class="form-group" name="Teams" id="teamname">
+                <option value="AtlantaHawks">Alanta Hawks</option> 
+                <option value="BostonCeltics">Boston Celtics </option>
+                <option value="BrooklynNets">Brooklyn Nets </option>
+                <option value="CharlotteHornets">Charlotte Hornets </option> 
+                <option value="ChicagoBulls">Chicago Bulls </option> 
+                <option value="ClevelandCavaliers">Cleveland Cavaliers </option> 
+                <option value="DallasMavericks">Dallas Mavericks </option> 
+                <option value="DenverNuggets">Denver Nuggets </option> 
+                <option value="DetroitPistons">Detroit Pistons </option> 
+                <option value="GoldenStateWarriors">Golden State Warriors </option> 
+                <option value="HoustonRockets">Houston Rockets </option> 
+                <option value="IndianaPacers">Indiana Pacers </option> 
+                <option value="LAClippers">LA Clippers </option> 
+                <option value="LALakers">LA Lakers </option> 
+                <option value="MemphisGrizzlies">Memphis Grizzlies </option> 
+                <option value="MiamiHeat">Miami Heat </option> 
+                <option value="MilwaukeeBucks">Milwaukee Bucks </option> 
+                <option value="MinnesotaTimberwolves">Minnesota Timberwolves </option> 
+                <option value="NewOrleansPelicans">New Orleans Pelicans </option> 
+                <option value="NewYorkKnicks">New York Knicks </option> 
+                <option value="OklahomaCityThunder">Oklahoma City Thunder </option> 
+                <option value="OrlandoMagic">Orlando Magic </option> 
+                <option value="PhiladelphiaSixers">Philadelphia Sixers </option> 
+                <option value="PhoenixSuns">Phoenix Suns </option> 
+                <option value="PortlandTrailBlazers">Portland Trail Blazer </option>
+                <option value="SacramentoKings">Sacramento Kings </option> 
+                <option value="SanAntonioSpurs">San Antonio Spurs </option> 
+                <option value="TorontoRaptors">Toronto Raptors </option> 
+                <option value="UtahJazz">Utah Jazz </option> 
+                <option value="WashingtonWizards">Washington Wizards </option> 
+              </select>
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn" formaction ="userquestions.html"><span class="fa fa-fire"></span>Submit</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newUser = {
+        UserID: $("#name").val().trim(),
+        Email: $("#age").val().trim(),
+        UserPassword: $("#faveTeam").val().trim(),
+        FavTeam: $("#teamname").val()
+      };
+
+      $.post("/api/userInfo", newUser)
+        .then(function(data) {
+         // console.log("add.html", data);
+          alert("Adding new user...");
+        });
+    });
+  </script>
+
+</body>
+
+<p>Copyright 2020 EGCB Inc. </p> 
+<p>All rights reserved </p> 
+</html>
