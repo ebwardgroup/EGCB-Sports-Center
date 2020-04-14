@@ -17,7 +17,18 @@ module.exports = function(sequelize, DataTypes) {
        FavTeam: {
         type: DataTypes.STRING,
         allowNull: true,
-       }
+       },
+       gamestats: {
+         type: DataTypes.BOOLEAN,
+          allowNull: false, 
+          defaultValue: 0
+           },
+
+        FavPlayer: {
+            type: DataTypes.STRING,
+            allowNull: true
+
+        }
     
 
     });

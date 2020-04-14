@@ -83,7 +83,20 @@
                 <option value="WashingtonWizards">Washington Wizards </option> 
               </select>
             </form>
+            
             <br>
+            <h4>Select which Apps you'd perfer</h4>
+              <label class="switch">
+                <input type="checkbox" id="gamestats"> &ensp; Game Stats
+              </label>
+              <br>
+              <label class="player">
+                <input type="checkbox" id="player12"> &ensp; Favorite Player
+              </label>
+              <div id="playerinsert" style="display:none">
+                <label for="team">Favorite Player</label>
+                <input type="text" class="form-control" id="faveplayer">
+              </div>
             <div class="text-right">
               <button type="submit" class="btn btn-primary btn-md" id="add-btn" formaction ="userquestions.html"><span class="fa fa-fire"></span>Submit</button>
             </div>
@@ -95,14 +108,26 @@
   </div>
 
   <script type="text/javascript">
-    
+
+$('#player12').click(function() {
+    $("#playerinsert").toggle(this.checked);
+});
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
+     let gamestats = $("#gamestats").val();
+    
+      let truefalsegamestats = 0;
+      if (gamestats === "on"){
+        truefalsegamestats = 1;
+      }
+
       var newUser = {
         UserID: $("#name").val().trim(),
         Email: $("#age").val().trim(),
         UserPassword: $("#faveTeam").val().trim(),
-        FavTeam: $("#teamname").val()
+        FavTeam: $("#teamname").val(),
+        gamestats: truefalsegamestats,
+        FavPlayer: $("#faveplayer").val().trim()
       };
 
       $.post("/api/userInfo", newUser)

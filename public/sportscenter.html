@@ -37,10 +37,9 @@
       <div id="menubar">
         <ul id="menu">
           <li class="selected" id="home"><a>Home</a></li>
-          <li id="gamestats"><a>Live Feeds</a></li>
-          <li><a href="">Scores</a></li>
-          <li><a href="">Player stats</a></li>
-          <li><a href="">Search</a></li>
+          <li class='gamestats'><a>Game Stats</a></li>
+          <li class='player'><a href="">Player Stats</a></li>
+          <li class='pref'><a href="">Preferences</a></li>
         </ul>
       </div>
     </div>
@@ -80,6 +79,12 @@
     $.ajax("/api/home/"+id, {
         type: "GET"
       }).then(function(data) {
+        console.log(data.db.gamestats)
+        if (data.db.gamestats === false){
+          $("#gamestats").empty()}
+        if (data.db.FavPlayer === null){
+          $("player").empty();
+        }
       $("#imagediv").prepend('<img id="theImg" SameSite=None src="'+data.color.url+'" />');
         $("#colormain").css("background-color", data.color.colors1[1]);
         $(".color1").css("background-color", data.color.colors1[2]);
@@ -88,16 +93,20 @@
         $("#favteam").html("Your favorite Team is: " + data.db.FavTeam);
 
         console.log(data.color.url);
-        console.log(data);})
+        console.log(data);});
   
-});
-$("#gamestats").on("click", function(){
-  var url = window.location.pathname;
-    var id = url.substring(url.lastIndexOf('/') + 1);
- 
-        window.location.href="/sportscentergame/"+id;
+      });
 
-});
+        $(".gamestats").on("click", function(){
+          console.log("YOU A BUTT");
+          var url = window.location.pathname;
+            var id = url.substring(url.lastIndexOf('/') + 1);
+         
+                window.location.href="/sportscentergame/"+id;
+        
+        
+      });
+      
   </script>
 </body>
 </html>

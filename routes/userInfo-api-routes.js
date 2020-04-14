@@ -17,7 +17,9 @@ module.exports = function(app) {
           UserID: req.body.UserID,
           Email: req.body.Email,
           UserPassword: req.body.UserPassword,
-          FavTeam: req.body.FavTeam
+          FavTeam: req.body.FavTeam,
+          gamestats: req.body.gamestats,
+          FavPlayer: req.body.FavPlayer
         }).then(function(dbuserInfo) {
           res.json(dbuserInfo)
         })
@@ -43,16 +45,16 @@ module.exports = function(app) {
           };
           });
         });
-        app.get("/api/getid/:id?", function(req, res){
-          console.log(req.params)
-          db.UserInfo.findOne({
-            where: {
-              id: req.query.id
-            },
-        }).then(function(dbuserinfo){
-        res.json(dbuserinfo.id);
-        });
-      });
+      //   app.get("/api/getid/:id?", function(req, res){
+      //     console.log(req.params)
+      //     db.UserInfo.findOne({
+      //       where: {
+      //         id: req.query.id
+      //       },
+      //   }).then(function(dbuserinfo){
+      //   res.json(dbuserinfo.id);
+      //   });
+      // });
         app.get("/api/home/:id?", function(req, res){
 
           db.UserInfo.findOne({
