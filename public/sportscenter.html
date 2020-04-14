@@ -61,6 +61,11 @@
                 Your favorite team:
             </div>
         </div>
+        <div class="color2">
+          <div class="color1" id="favplayer">
+              Your favorite player:
+          </div>
+      </div>
       </div>
   </div>
     </div>
@@ -91,6 +96,7 @@
         $(".color2").css("background-color", data.color.colors1[3]);
         $("#welcomeid").html("Welcome: "+ data.db.UserID)
         $("#favteam").html("Your favorite Team is: " + data.db.FavTeam);
+        $("#favplayer").html("Your favorite Player is: " + data.db.FavPlayer);
 
         console.log(data.color.url);
         console.log(data);});
