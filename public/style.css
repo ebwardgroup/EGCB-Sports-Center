@@ -198,12 +198,12 @@ h5, h6
   letter-spacing: normal;
   padding: 0 0 15px 0;}
 
-a, a:hover
+li, li:hover
 { outline: none;
   text-decoration: underline;
   color: #AEB002;}
 
-a:hover
+li:hover
 { text-decoration: none;}
 
 blockquote
@@ -510,3 +510,20 @@ display: flex;
  #favteam{
   font-size: 20px;
 }
+#colormain1{
+  padding: 20px;
+    }
+  .color12{
+    padding: 20px;
+  }
+  .color22{
+    padding: 20px;
+  }
+  #imageborder{
+    border-style: solid;
+    border-width: 20px;
+    border-color: white;
+  }
+  .instruction{
+    color: black;
+  }

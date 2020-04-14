@@ -36,8 +36,8 @@
       </div>
       <div id="menubar">
         <ul id="menu">
-          <li class="selected"><a href="sportscenter.html">Home</a></li>
-          <li><a href="">Live Feeds</a></li>
+          <li class="selected" id="home"><a>Home</a></li>
+          <li id="gamestats"><a>Live Feeds</a></li>
           <li><a href="">Scores</a></li>
           <li><a href="">Player stats</a></li>
           <li><a href="">Search</a></li>
@@ -71,6 +71,7 @@
     </div>
   </div>
   <script>
+    let data;
     $( document ).ready(function() {
     console.log( "ready!" ); 
     var url = window.location.pathname;
@@ -88,6 +89,14 @@
 
         console.log(data.color.url);
         console.log(data);})
+  
+});
+$("#gamestats").on("click", function(){
+  var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+ 
+        window.location.href="/sportscentergame/"+id;
+
 });
   </script>
 </body>

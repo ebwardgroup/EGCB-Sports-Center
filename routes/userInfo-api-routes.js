@@ -43,6 +43,16 @@ module.exports = function(app) {
           };
           });
         });
+        app.get("/api/getid/:id?", function(req, res){
+          console.log(req.params)
+          db.UserInfo.findOne({
+            where: {
+              id: req.query.id
+            },
+        }).then(function(dbuserinfo){
+        res.json(dbuserinfo.id);
+        });
+      });
         app.get("/api/home/:id?", function(req, res){
 
           db.UserInfo.findOne({

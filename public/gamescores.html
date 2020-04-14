@@ -12,53 +12,80 @@
 </head>
 
 <body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <div id="logo_text">
-         
-          <h1><a href="index.html">EGCB<span class="logo_colour">Sports Center</span></a></h1>
-          <h2>If you want sports, we got the details</h2>
+    <div id="main">
+      <div id="header">
+        <div id="logo">
+          <div id="logo_text">
+           
+            <h1><a href="index.html">EGCB<span class="logo_colour">Sports Center</span></a></h1>
+            <h2>If you want sports, we got the details</h2>
+          </div>
+        </div>
+        <div id="menubar">
+          <ul id="menu">
+            <li class="selected" id="home"><a>Home</a></li>
+            <li id="gamestats"><a>Live Feeds</a></li>
+            <li><a href="">Scores</a></li>
+            <li><a href="">Player stats</a></li>
+            <li><a href="">Search</a></li>
+          </ul>
         </div>
       </div>
-      <div id="menubar">
-        <ul id="menu">
-          <li class="selected"><a href="sportscenter.html">Home</a></li>
-          <li><a href="">Live Feeds</a></li>
-          <li><a href="">Scores</a></li>
-          <li><a href="">Player stats</a></li>
-          <li><a href="">Search</a></li>
-        </ul>
-      </div>
+<div id="colormain1">
+    <div class="color12">
+        <div class="color22">
+            
+            <h2 class=instruction>Select any team from the dropdown menu to see its game scores for the current season!</h2>
+            <div class=banner-bar>
+              <br>
+              <br clear="clearfix">
+            </div>
+            <a href="https://www.nba.com">
+              <img src="https://i.imgur.com/mAhBtrA.jpg" alt="nba team logos" style="height:300px;" id="imageborder">
+            </a>
+            <div class="navbar">
+              <div class="dropdown">
+                  <select id="selectTeam">
+                      <option>Choose an NBA Team</option>
+                  </select>
+              </div>
+            
+            </div>
+            <br><br>
+            <div class="row">
+              <br>
+              <div class="teamName" id="gameList">
+        </div>
+        </div>
     </div>
-<h2 class=instruction>Select any team from the dropdown menu to see its game scores for the current season!</h2>
-<div class=banner-bar>
-    <br>
-    <br clear="clearfix">
 </div>
-<div class="navbar">
-    <div class="dropdown">
-        <select id="selectTeam">
-            <option>Choose an NBA Team</option>
-        </select>
-    </div>
-
 </div>
-<br><br>
-
-<div class="row">
-    <a href="https://www.nba.com">
-        <img src="https://i.imgur.com/mAhBtrA.jpg" alt="nba team logos" style="width:40%;height:40%;">
-    </a>
-    <br>
-    <div class="teamName" id="gameList">
-
-    </div>
     <div id="content_footer"></div>
     <div id="footer">
       <p>Copyright &copy; EGCB Sports Cetner
     </div>
     <script>
+        $( document ).ready(function() {
+    console.log( "ready!" ); 
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    console.log(id);
+    $.ajax("/api/home/"+id, {
+        type: "GET"
+      }).then(function(data) {
+    //   $("#imagediv").prepend('<img id="theImg" SameSite=None src="'+data.color.url+'" />');
+        $("#colormain1").css("background-color", data.color.colors1[1]);
+        $(".color12").css("background-color", data.color.colors1[2]);
+        $(".color22").css("background-color", data.color.colors1[3]);
+        $("#imageborder").css("border-color", data.color.colors1[1]);
+        
+        // $("#welcomeid").html("Welcome: "+ data.db.UserID)
+        // $("#favteam").html("Your favorite Team is: " + data.db.FavTeam);
+
+        console.log(data.color.url);
+        console.log(data);})
+  
+});
         var selectTeam = document.getElementById("selectTeam");
         var selectGame = document.getElementById("selectGame");
 
@@ -127,5 +154,10 @@
                 // return selected team score and competitor score
             });
         })
+        $("#home").on("click", function(){
+            var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+  window.location.href="/sportscenter/" + id;
+})
     </script>
 </body>
