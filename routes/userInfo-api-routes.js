@@ -5,7 +5,8 @@ var express = require('express');
 const teamlocations = require("../NBATEAM/findpng.js");
 const path = require('path');
 const getColors = require('get-image-colors');
-let colorarray15 =[];
+let colorarray15 = [];
+
 // let teamstring = require('./string.js');
 
 //POST route for saving new user info
@@ -56,30 +57,52 @@ module.exports = function(app) {
             let currentteam = "../NBATEAM/NBAlogos/" + teamstring1[0] +".png";
             console.log(currentteam);
             let currentteamonlineurl = teamstring1[1];
+            console.log("2nd: "+colorarray15);
+            
             getColors(path.join(__dirname, currentteam)).then(colors => {
                 
                colorarray = colors.map(color => color.hex());
-               console.log(colorarray);
-               colorarray15 =[];
+                // console.log(colorarray);
+                colorarray15 =[];
               colorarray.forEach(element => {
-                  colorarray15.push(element);
+                  colorarray15.push(element)
               });
+                let teamobj ={
+                         colors1: colorarray15,
+                         url: currentteamonlineurl,
+                         
+                      }
+            
+              
+              let infoobject = {
+                db: data,
+                color: teamobj
+              }
+              console.log(infoobject);
+              console.log("3rd: "+colorarray15);
+              // res.sendFile(teamcolor.url);
+              // res.sendFile(teamcolor.url);
+              res.send(infoobject);
             });
-               
-            let teamobj ={
-                   colors1: colorarray15,
-                   url: currentteamonlineurl
-                }
+            });
 
-            let infoobject = {
-              db: data,
-              color: teamobj
-            }
-            console.log(infoobject);
-            // res.sendFile(teamcolor.url);
-            // res.sendFile(teamcolor.url);
-            res.send(infoobject);
+               
+
           
-          });
         });
-};
+
+}
+// function getColorsnow(currentteam){
+//   getColors(path.join(__dirname, currentteam)).then(colors => {
+                
+//   colorarray = colors.map(color => color.hex());
+//    // console.log(colorarray);
+//    colorarray15 =[];
+//  colorarray.forEach(element => {
+//      colorarray15.push(element);
+//  });
+//  console.log("infunction: "+colorarray15);
+ 
+// });
+
+// }
