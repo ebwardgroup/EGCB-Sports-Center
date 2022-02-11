@@ -18,7 +18,7 @@
   "homepage": "https://github.com/ColeJohnson99/EGCB-Sports-Center#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.3",
+    "express-handlebars": "^5.3.1",
     "get-image-colors": "^2.0.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
